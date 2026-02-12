@@ -14,21 +14,37 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
 
-    @Mapping(target = "parentId", source = "parent.id")
+    @Mapping(target = "parentId", expression = "java(mapParentId(category))")
     @Mapping(target = "children", qualifiedByName = "mapChildren")
     CategoryDTO toDTO(Category category);
 
-    @Named("mapChildren")
-    default List<CategoryDTO> mapChildren(List<Category> children) {
-        if (children == null || children.isEmpty()) {
-            return null;
+    default Long mapParentId(Category category) {
+        try {
+            if (category.getParent() != null) {
+                return category.getParent().getId();
+            }
+        } catch (Exception e) {
+            // Handle lazy loading exception
         }
-        return children.stream()
-                .map(this::toDTOWithoutChildren)
-                .toList();
+        return null;
     }
 
-    @Mapping(target = "parentId", source = "parent.id")
+    @Named("mapChildren")
+    default List<CategoryDTO> mapChildren(List<Category> children) {
+        try {
+            if (children == null || children.isEmpty()) {
+                return null;
+            }
+            return children.stream()
+                    .map(this::toDTOWithoutChildren)
+                    .toList();
+        } catch (Exception e) {
+            // Handle lazy loading exception
+            return null;
+        }
+    }
+
+    @Mapping(target = "parentId", expression = "java(mapParentId(category))")
     @Mapping(target = "children", ignore = true)
     CategoryDTO toDTOWithoutChildren(Category category);
 

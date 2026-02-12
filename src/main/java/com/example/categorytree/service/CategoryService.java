@@ -33,6 +33,7 @@ public class CategoryService {
         }
 
         Category savedCategory = categoryRepository.save(category);
+        categoryRepository.flush(); // Ensure the entity is persisted
         return categoryMapper.toDTO(savedCategory);
     }
 
