@@ -1,0 +1,66 @@
+package com.example.categorytree.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import java.util.List;
+
+public class CategoryDTO {
+
+    private Long id;
+    
+    @NotBlank(message = "Name is required")
+    private String name;
+    
+    private String description;
+    private Long parentId;
+    private List<CategoryDTO> children;
+
+    public CategoryDTO() {
+    }
+
+    public CategoryDTO(Long id, String name, String description, Long parentId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.parentId = parentId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<CategoryDTO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<CategoryDTO> children) {
+        this.children = children;
+    }
+}

@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+gradle-app.setting
+!gradle-wrapper.properties
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# H2 Database
+*.db
+*.trace.db
