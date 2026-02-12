@@ -1,11 +1,15 @@
 package com.example.categorytree.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public class CategoryDTO {
 
     private Long id;
+    
+    @NotBlank(message = "Name is required")
     private String name;
+    
     private String description;
     private Long parentId;
     private List<CategoryDTO> children;

@@ -1,8 +1,6 @@
 package com.example.categorytree.service;
 
-import com.example.categorytree.dto.CategoryCreateDTO;
 import com.example.categorytree.dto.CategoryDTO;
-import com.example.categorytree.dto.CategoryUpdateDTO;
 import com.example.categorytree.entity.Category;
 import com.example.categorytree.mapper.CategoryMapper;
 import com.example.categorytree.repository.CategoryRepository;
@@ -23,7 +21,7 @@ public class CategoryService {
         this.categoryMapper = categoryMapper;
     }
 
-    public CategoryDTO createCategory(CategoryCreateDTO createDTO) {
+    public CategoryDTO createCategory(CategoryDTO createDTO) {
         Category category = categoryMapper.toEntity(createDTO);
 
         if (createDTO.getParentId() != null) {
@@ -62,7 +60,7 @@ public class CategoryService {
         return categoryMapper.toDTOList(children);
     }
 
-    public CategoryDTO updateCategory(Long id, CategoryUpdateDTO updateDTO) {
+    public CategoryDTO updateCategory(Long id, CategoryDTO updateDTO) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
 

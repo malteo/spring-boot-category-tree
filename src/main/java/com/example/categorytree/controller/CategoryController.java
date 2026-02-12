@@ -1,8 +1,6 @@
 package com.example.categorytree.controller;
 
-import com.example.categorytree.dto.CategoryCreateDTO;
 import com.example.categorytree.dto.CategoryDTO;
-import com.example.categorytree.dto.CategoryUpdateDTO;
 import com.example.categorytree.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -22,7 +20,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryCreateDTO createDTO) {
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO createDTO) {
         CategoryDTO createdCategory = categoryService.createCategory(createDTO);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
@@ -54,7 +52,7 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDTO> updateCategory(
             @PathVariable Long id,
-            @Valid @RequestBody CategoryUpdateDTO updateDTO) {
+            @Valid @RequestBody CategoryDTO updateDTO) {
         CategoryDTO updatedCategory = categoryService.updateCategory(id, updateDTO);
         return ResponseEntity.ok(updatedCategory);
     }

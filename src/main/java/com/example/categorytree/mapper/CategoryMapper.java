@@ -1,8 +1,6 @@
 package com.example.categorytree.mapper;
 
-import com.example.categorytree.dto.CategoryCreateDTO;
 import com.example.categorytree.dto.CategoryDTO;
-import com.example.categorytree.dto.CategoryUpdateDTO;
 import com.example.categorytree.entity.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -51,12 +49,12 @@ public interface CategoryMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "parent", ignore = true)
     @Mapping(target = "children", ignore = true)
-    Category toEntity(CategoryCreateDTO createDTO);
+    Category toEntity(CategoryDTO createDTO);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "parent", ignore = true)
     @Mapping(target = "children", ignore = true)
-    void updateEntity(CategoryUpdateDTO updateDTO, @MappingTarget Category category);
+    void updateEntity(CategoryDTO updateDTO, @MappingTarget Category category);
 
     default List<CategoryDTO> toDTOList(List<Category> categories) {
         if (categories == null) {
