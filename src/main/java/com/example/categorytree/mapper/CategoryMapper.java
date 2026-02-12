@@ -23,8 +23,8 @@ public interface CategoryMapper {
             if (category.getParent() != null) {
                 return category.getParent().getId();
             }
-        } catch (Exception e) {
-            // Handle lazy loading exception
+        } catch (org.hibernate.LazyInitializationException e) {
+            // Parent is not loaded, return null
         }
         return null;
     }
@@ -38,8 +38,8 @@ public interface CategoryMapper {
             return children.stream()
                     .map(this::toDTOWithoutChildren)
                     .toList();
-        } catch (Exception e) {
-            // Handle lazy loading exception
+        } catch (org.hibernate.LazyInitializationException e) {
+            // Children collection is not initialized, return null
             return null;
         }
     }

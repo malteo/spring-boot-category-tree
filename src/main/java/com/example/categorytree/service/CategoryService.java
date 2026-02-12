@@ -83,6 +83,14 @@ public class CategoryService {
         return categoryMapper.toDTO(updatedCategory);
     }
 
+    /**
+     * Deletes a category by ID.
+     * Note: Due to CascadeType.ALL on the parent-child relationship,
+     * deleting a category will also delete all its children recursively.
+     * 
+     * @param id the ID of the category to delete
+     * @throws RuntimeException if the category is not found
+     */
     public void deleteCategory(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
