@@ -42,5 +42,12 @@ public interface CategoryMapper {
     @Mapping(target = "children", ignore = true)
     void updateEntity(CategoryUpdateDTO updateDTO, @MappingTarget Category category);
 
-    List<CategoryDTO> toDTOList(List<Category> categories);
+    default List<CategoryDTO> toDTOList(List<Category> categories) {
+        if (categories == null) {
+            return null;
+        }
+        return categories.stream()
+                .map(this::toDTO)
+                .toList();
+    }
 }
